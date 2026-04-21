@@ -6,7 +6,7 @@ I'm a beginner in cyber security learning and focusing on penetration testing an
 - Become a professional penetration tester
 - Help in solving real world problems 
 - Also earn through my cyber security skills 
-- # MY DAY-TO-DAY PROGRESS LOG
+# MY DAY-TO-DAY PROGRESS LOG
 - I created GitHub Repository.
 - Started my Cyber security Journey today.
 - I also just finished the installation of Virtual box and Kali Linux.
