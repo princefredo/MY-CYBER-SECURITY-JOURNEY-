@@ -22,4 +22,4 @@ THIS FOLDER WILL CONTAIN MY TRYHACKME NOTES AND PROGRESS.
     - Not knowing what each commands does initially
      ## SOLUTION
     - Took time to understand each command before running it.
-    - Practiced reading instructions carefully
+    - Practiced reading instructions carefully.
