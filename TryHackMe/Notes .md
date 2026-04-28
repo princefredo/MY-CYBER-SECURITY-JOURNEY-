@@ -39,3 +39,23 @@ THIS FOLDER WILL CONTAIN MY TRYHACKME NOTES AND PROGRESS.
     - Responses
     ## MY EXPERIENCE
     This was my first real exposure to how defenders work in cybersecurtiy.
+    ## DAY 3
+    ### ROOM (WHAT IS NETWORKING)
+    ## WHAT I DID
+    -Started networking on tryhackme
+    ## WHAT I LEARNED 
+    - Definition of a network(A group of devices connected together)
+    - Definition of internet(A group of network connected together)
+    - types of network
+    - Identifying devices on a network
+    - What an IP address is(A way of identifying a host on a network)
+    - W.W.W worrld wide web
+    - Practiced PING command in kali linux 
+    - Observed how devices respond on a network
+    ## COMMANDS USED 
+    - Ping 192.168.1.1
+    - MAC address a4:f0:85:ac:2d
+    - PING 8.8.8.8
+    ## WHAT I OBSERVED 
+    - My system has an IP address 
+    - Network interfaces control communication.
