@@ -77,3 +77,68 @@ Nmap is not just for scanning ports. It is used for:
 - OS fingerprinting
 - Security analysis
 - Infrastructure discovery
+
+- ---
+
+### ENUMERATION WITH NMAP
+
+## WHAT IS ENUMERATION
+Enumeration is the process of extracting detailed information from discovered services after reconnaissance.
+Examples:
+- OS information
+- Service details
+- Workgroups/domains
+- Security configurations
+
+---
+
+### SMB ENUMERATION
+
+## SMB OS DISCOVERY SCRIPT
+Command:
+nmap --script smb-os-discovery <target>
+Example:
+nmap --script smb-os-discovery 10.0.2.2
+## PURPOSE OF SMB ENUMERATION
+The script attempts to discover:
+- Operating system
+- SMB information
+- Computer name
+- Workgroup/domain
+## IMPORTANT ENUMERATION CONCEPT
+Enumeration may:
+- Return detailed information
+OR
+- Return limited/no information
+Both outcomes are meaningful.
+Limited results may indicate:
+- Firewalls
+- NAT filtering
+- Hardened systems
+- Infrastructure devices
+## VULNERABILITY THINKING
+Open Port ≠ Vulnerability
+An open port means:
+- A service is running
+- Investigation is required
+## PENTESTER ANALYSIS
+When discovering an open port:
+1. Identify the service
+2. Determine the version
+3. Check for vulnerabilities
+4. Analyze configurations
+5. Investigate security protections
+## COMMON PORTS STATE
+OPEN
+A service is actively accepting connections.
+CLOSED
+The port is reachable, but no service is listening.
+FILTERED
+The port is hidden or blocked by firewall/NAT.
+## IMPORTANT LEARNING
+Different systems expose different services.
+Examples:
+- Windows systems may expose SMB
+- Linux systems commonly expose SSH
+- Web servers commonly expose HTTP/HTTPS
+Reconnaissance and enumeration help identify the role of a target system.
