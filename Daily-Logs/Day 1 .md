@@ -117,12 +117,10 @@ Today I learned how to interpret deep reconnaissance scans instead of simply rea
 ### Day 4 
 ## Enumeration & Vulnerability Thinking
 
-## Objective
+## OBJECTIVE
 To understand the difference between reconnaissance and enumeration and begin thinking like a penetration tester by analyzing services and possible weaknesses.
 
----
-
-# Reconnaissance vs Enumeration/VULNERABILITY THINKING
+# RECONNAISSANCE vs ENUMERATION/VULNERABILITY THINKING
 
 ## RECONNAISSANCE
 Reconnaissance is the process of gathering basic information about a target.
@@ -201,3 +199,116 @@ Different systems expose different services depending on:
 - Firewalls and NAT affect scanning results
 ## REFLECTION
 Today I learned how penetration testers move from reconnaissance into enumeration and vulnerability thinking. I also learned that every system behaves differently and that filtered ports and limited enumeration results still provide valuable information.
+
+
+# Day 5 
+# WEB APPLICATION BASICS AND HTTP ENUMERATION
+
+## OBJECTIVE
+To understand how web applications communicate using HTTP/HTTPS and learn how to perform basic HTTP enumeration using curl.
+
+# WHAT I LEARNED
+Today I learned:
+- How browsers communicate with web servers
+- The difference between HTTP and HTTPS
+- What requests and responses are
+- What HTTP headers are
+- What HTTP status codes mean
+- How to use curl for web enumeration
+- The structure of an HTTP response
+- The difference between headers and body content
+# HTTP BASICS
+## HTTP
+HTTP stands for:
+HyperText Transfer Protocol
+It is the protocol used for communication between:
+- Browsers
+- Web servers
+HTTP usually uses:
+- Port 80
+## HTTPS
+HTTPS is the secure version of HTTP.
+It encrypts communication using SSL/TLS.
+HTTPS usually uses:
+- Port 443
+# REQUEST AND RESPONSE
+## REQUEST
+A request is sent from the browser/client to the web server.
+Example:
+The browser asks for a webpage.
+## RESPONSE
+The server replies with:
+- Status line
+- Headers
+- Body (optional)
+# HTTP RESPONSE STRUCTURE
+1. Status Line
+2. Headers
+3. Body
+# PRACTICAL COMMANDS USED
+
+## REQUESTING A WEBPAGE
+curl http://google.com
+## VIEWING HTTP HEADERS ONLY
+curl -I https://google.com
+# RESULTS AND ANALYSIS
+
+## GOOGLE RESPONSE
+Status Code:
+301 Moved Permanently
+Meaning:
+Google redirected the request to:
+https://www.google.com
+# HTTP STATUS CODE LEARNED
+| Code | Meaning |
+|------|----------|
+| 200 | Success |
+| 301 | Redirect |
+| 403 | Forbidden |
+| 404 | Not Found |
+| 500 | Server Error |
+# IMPORTANT HHEADERS OBSERVED
+
+## LOCATION:
+Used for redirects.
+Example:
+location: https://www.google.com/
+## CONTENT TYPE:
+Shows the type of content returned.
+Example:
+text/html
+## SERVER:
+Reveals information about the web server.
+Example:
+gws (Google Web Server)
+## X-FRAME OPTIONS:
+Security header used to prevent clickjacking attacks.
+## CONTENT-SECURITY-POLICY:
+Security mechanism used to reduce malicious script execution.
+## UNDERSTANDING HEADERS
+HTTP headers contain metadata and instructions about:
+- Security
+- Content
+- Redirects
+- Server behavior
+Headers are important during web enumeration because they may reveal:
+- Technologies
+- Security configurations
+- Server information
+## UNDERSTANDING THE BODY
+The body contains the actual content returned by the server.
+Examples:
+- HTML webpages
+- JSON data
+- Files
+- Error messages
+The body is what browsers visually render.
+## KEY LESSONS LEARNED
+- Web applications communicate using HTTP/HTTPS
+- HTTP responses contain status lines, headers, and bodies
+- curl can be used for web enumeration
+- Headers reveal important security and server information
+- Redirects are common on modern websites
+- Pentesters analyze headers and responses for information leakage
+## REFLECTION
+Today I learned the foundation of web communication and how penetration testers analyze web server responses. I also learned that HTTP headers reveal important information about server behavior and security configurations.
