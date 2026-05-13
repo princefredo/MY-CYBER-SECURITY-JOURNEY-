@@ -142,3 +142,89 @@ Examples:
 - Linux systems commonly expose SSH
 - Web servers commonly expose HTTP/HTTPS
 Reconnaissance and enumeration help identify the role of a target system.
+
+
+## WEB APPLICATION BASICS & HTTP ENUMERATION
+
+## HTTP
+HTTP stands for:
+HyperText Transfer Protocol
+Used for communication between:
+- Browsers
+- Clients
+- Web servers
+Default Port:
+80
+## HTTPS
+HTTPS is the secure encrypted version of HTTP.
+Uses SSL/TLS encryption.
+Default Port:
+443
+## HTTP COMMUNICATION FLOW
+1. Client sends a request
+2. Server processes the request
+3. Server sends a response
+## HTTP Response Structure
+# 1. STATUS LINE
+Contains:
+- HTTP version
+- Status code
+Example:
+HTTP/2 301
+# 2. HEADERS
+Contain metadata and instructions.
+Examples:
+- content-type
+- server
+- location
+- cache-control
+Headers may reveal:
+- Technologies
+- Security settings
+- Redirects
+- Server information
+# 3. BODY
+Contains the actual content returned by the server.
+Examples:
+- HTML
+- JSON
+- Error messages
+- Files
+## COMMON HTTP STATUS CODES 
+| Code | Meaning |
+|------|----------|
+| 200 | Success |
+| 301 | Redirect |
+| 403 | Forbidden |
+| 404 | Not Found |
+| 500 | Server Error |
+## CURL
+curl is a command-line tool used to communicate directly with web servers.
+Used for:
+- Web enumeration
+- Testing responses
+- Viewing headers
+- API interaction
+## IMPORTANT CURL COMMAND
+# REQUEST A WEBPAGE
+curl <url>
+Example:
+curl http://google.com
+## VIEW  HTTP HEADERS ONLY
+curl -I <url>
+Example:
+curl -I https://google.com
+## SECURITY HEADERS LEARNED
+# CONTENT SECURITY POLICY (CSP)
+Helps prevent malicious script execution.
+# X-FRAME-OPTIONS
+Helps prevent clickjacking attacks.
+## ENUMERATION MINDSET
+When analyzing a website, a pentester should ask:
+1. What server is running?
+2. Are redirects present?
+3. What technologies are used?
+4. Are security headers configured?
+5. Is information leakage present?
+## IMPORTANT LEARNING
+Headers are valuable sources of intelligence during web reconnaissance and security analysis.
