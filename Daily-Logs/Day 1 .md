@@ -312,3 +312,114 @@ The body is what browsers visually render.
 - Pentesters analyze headers and responses for information leakage
 ## REFLECTION
 Today I learned the foundation of web communication and how penetration testers analyze web server responses. I also learned that HTTP headers reveal important information about server behavior and security configurations.
+
+### DAY 6 – WEB VULNERABILITY FUNDAMENTALS AND HTTP METHOD
+# OBJECTIVE
+To understand how web vulnerabilities occur, how attackers manipulate user input, and how HTTP methods are used in web communication.
+### WEB VULNERABILITY FUNDAMENTAL
+
+## WHAT IS A VULNERABILITY?
+A vulnerability is a weakness in a system or web application that can be abused by attackers.
+Examples:
+- Weak authentication
+- Unsafe file uploads
+- Outdated software
+- Poor input validation
+## IMPORTANT SECURITY PRINCIPLE
+
+## NEVER TRUST USER INPUT
+Web applications constantly receive input from users such as:
+- Search boxes
+- Login forms
+- URLs
+- Comment sections
+- File uploads
+If an application trusts user input too much without proper validation, vulnerabilities may occur.
+### COMMON BEGINNER WEB VULNERABILITY LEARNED
+
+## 1. CROSS-SITE SCRIPTING (XSS)
+Occurs when attackers inject malicious JavaScript into a webpage.
+Usually caused by:
+- Poor input sanitization
+## 2. SQL INJECTION
+Occurs when attackers manipulate database queries through user input.
+Usually caused by:
+- Unsafe handling of user-controlled data
+## 3. FILE UPLOAD VULNERABILITIES
+Occurs when applications allow dangerous files to be uploaded.
+Potential risks:
+- Remote code execution
+- Malware upload
+- Web shell upload
+## 4. INFORMATION DISCLOSURE
+Occurs when applications expose sensitive information such as:
+- Server versions
+- Errors
+- Internal paths
+- Debug information
+## ATTACKER MINDSET
+A pentester should ask:
+- What input can I control?
+- Can I manipulate the input?
+- Does the server validate the data properly?
+- What happens if unexpected data is sent?
+
+---
+### HTTP METHODS AND REQUEST 
+
+## WHAT ARE HTTP METHHODS?
+HTTP methods are instructions sent from the client/browser to the server to tell the server what action to perform.
+## GET METHOD
+
+# PURPOSE
+Used to retrieve information from a server.
+Example:
+Viewing a webpage.
+## CHARACTERISTICS
+- Parameters appear in the URL
+- Easy to manipulate
+- Commonly used for browsing and fetching data
+Example:
+https://site.com/profile?id=25
+## WHY GET REQUEST MATTERS IN PENETRATION TESTING
+GET parameters are important because attackers may manipulate them to test:
+- Access control
+- Information disclosure
+- SQL injection
+- IDOR vulnerabilities
+Example:
+Changing:
+id=25
+to:
+id=1
+to test whether another user's data can be accessed.
+## POST METHOD
+# PURPOSE
+Used to send data to the server.
+Commonly used for:
+- Login forms
+- Registration forms
+- File uploads
+# CHARACTERISTICS
+- Data is sent inside the request body
+- Data is not directly visible in the URL
+- Commonly used for sensitive information
+# IMPORTANT LESSONS
+POST requests are NOT automatically secure.
+Security depends on:
+- HTTPS encryption
+- Proper server-side validation
+## GET vs POST
+| GET | POST |
+|------|------|
+| Retrieves data | Sends data |
+| Data appears in URL | Data sent in body |
+| Easy to manipulate | Commonly used for forms |
+## KEY LESSONS LEARNED
+- Web vulnerabilities often happen because applications trust user input too much
+- Attackers manipulate requests and parameters to test application behavior
+- GET requests expose parameters directly in URLs
+- POST requests send data inside the request body
+- Understanding requests and user input is foundational in web pentesting
+## REFLECTION
+Today I learned how attackers think about web applications and how vulnerabilities often begin from unsafe handling of user input. I also learned the difference between GET and POST requests and why request manipulation is important in penetration testing.
