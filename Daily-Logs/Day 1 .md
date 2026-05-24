@@ -423,3 +423,140 @@ Security depends on:
 - Understanding requests and user input is foundational in web pentesting
 ## REFLECTION
 Today I learned how attackers think about web applications and how vulnerabilities often begin from unsafe handling of user input. I also learned the difference between GET and POST requests and why request manipulation is important in penetration testing.
+
+# Day 7 – HTTP PARAMETERS & REQUEST MANIPULATION
+
+## OBJECTIVE
+To understand how web applications use parameters and how attackers manipulate requests during web penetration testing.
+## KEY CONCEPTS LEARNED
+### WHAT ARE HTTP PARAMETERS?
+Parameters are pieces of data sent from the browser to the server.
+Example:
+https://site.com/profile?id=25
+- Parameter Name: id
+- Parameter Value: 25
+## WHY PARAMETERS MATTERS
+Attackers target parameters because:
+- users can control them
+- they influence server behavior
+- poor validation can lead to vulnerabilities
+## TYPES OF PARAMETER
+### 1. URL PARAMETER (GET PARAMETERS)
+Visible inside URLs.
+Example:
+?id=25
+Used to retrieve information.
+### 2. FORM PARAMETERS (POST PARAMETER)
+Sent through forms.
+Example:
+username=admin
+password=1234
+Usually sent in request body.
+### 3. HIDDEN PARAMETERS
+Parameters hidden inside forms.
+Example:
+<input type="hidden" name="role" value="user">
+Attackers may still manipulate them.
+## PARAMETER TAMPERING
+Parameter tampering is modifying parameters to test how the server behaves.
+Example:
+role=user → role=admin
+This may lead to privilege escalation if validation is weak.
+## PENTESTER THINKING
+When seeing parameters, a pentester should ask:
+- Can I modify this?
+- Does the server validate it?
+- Can I access unauthorized data?
+- Can I change roles or permissions?
+- Can I manipulate application behavior?
+## IDOR INTRODUCTION
+IDOR (Insecure Direct Object Reference) happens when users can access resources they should not access.
+Example:
+profile?id=25 → profile?id=1
+If another user profile loads, it may indicate broken access control.
+## KEY LEARNING
+- Applications should never trust user input
+- Parameters are common attack surfaces
+- Request manipulation is a core web pentesting skill
+- Proper server-side validation is critical
+## REFLECTION
+This lesson helped me understand how attackers manipulate requests and why parameter validation is important in web security.
+
+# Day 8 – COOKIES, SESSIONS & AUTHENTICATION BASICS
+## OBJECTIVE
+To understand how websites authenticate users and maintain login sessions using cookies and session IDs.
+## WHAT IS AUTHENTICATION?
+Authentication is the process of verifying a user's identity.
+Example:
+- Username
+- Password
+The server checks if the credentials are correct.
+## WHAT IS HTTP STATELESSNESS?
+HTTP is stateless, meaning the server does not naturally remember previous requests.
+Because of this:
+- websites use sessions
+- cookies help maintain identity
+## WHAT IS A SESSION?
+A session is a server-side record that keeps track of an authenticated user.
+Example:
+sessionID=abc123
+The server links this session ID to the logged-in user.
+## WHAT IS A COOKIE?
+A cookie is small data stored in the browser.
+Websites use cookies to:
+- maintain login sessions
+- remember users
+- store preferences
+## AUTHENTICATION FLOW
+### STEP 1 – USER LOGS IN
+The browser sends:
+username + password
+### STEP 2 – SERVER AUTHENTICATES USER
+The server verifies the credentials.
+### STEP 3 – SERVER CREATES SESSION
+Example:
+sessionID=abc123
+### STEP 4 – SESSION STORED AS COOKIE
+The server sends:
+Set-Cookie: sessionID=abc123
+The browser stores it.
+### STEP 5 – BROWSER SENDS COOKIE AUTOMATICALLY
+Future requests send:
+Cookie: sessionID=abc123
+The server recognizes the authenticated user.
+## IMPORTANT UNDERSTANDING
+The cookie usually stores:
+- session ID
+The cookie usually does NOT store:
+- raw password
+## LOGOUT PROCESS
+When a user logs out:
+- the session should be destroyed
+- the session cookie should become invalid
+The user must login again to become authenticated.
+## COOKIE SECURITY FLAGS
+### SECURE
+Cookie only sent over HTTPS.
+### HTTPONLY
+Prevents JavaScript from accessing cookies.
+### SAMESITE
+Helps reduce cross-site request attacks.
+## SESSION HI-JACKING
+If attackers steal session cookies, they may impersonate the user without knowing the password.
+Example:
+sessionID=abc123
+This is called session hijacking.
+## PENTESTER THINKING
+A pentester should ask:
+- Are session IDs predictable?
+- Are cookies protected?
+- Does logout destroy sessions?
+- Can sessions be hijacked?
+- Is authentication secure?
+## KEY LEARNING
+- Authentication verifies identity
+- Sessions maintain logged-in state
+- Cookies store session identifiers
+- Session security is critical in web applications
+## REFLECTION
+This lesson helped me understand how websites remember users and why session security is very important in web application penetration testing.
