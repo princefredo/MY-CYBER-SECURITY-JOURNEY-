@@ -424,7 +424,7 @@ Security depends on:
 ## REFLECTION
 Today I learned how attackers think about web applications and how vulnerabilities often begin from unsafe handling of user input. I also learned the difference between GET and POST requests and why request manipulation is important in penetration testing.
 
-# Day 7 – HTTP PARAMETERS & REQUEST MANIPULATION
+# DAY 7 – HTTP PARAMETERS & REQUEST MANIPULATION
 
 ## OBJECTIVE
 To understand how web applications use parameters and how attackers manipulate requests during web penetration testing.
@@ -560,3 +560,132 @@ A pentester should ask:
 - Session security is critical in web applications
 ## REFLECTION
 This lesson helped me understand how websites remember users and why session security is very important in web application penetration testing.
+
+# DAY 9
+### BURP SUITE FUNDAMENTALS
+## OBJECTIVE
+Learn the purpose of Burp Suite and understand how penetration testers use it to inspect, intercept, and manipulate web application traffic.
+## WHAT IS BURP SUITE?
+Burp Suite is a web application security testing tool commonly used by penetration testers. It acts as a proxy between a web browser and a web server, allowing testers to capture, inspect, modify, and forward HTTP requests and responses.
+    A simple way to think about Burp Suite is that it allows a penetration tester to observe web traffic and understand how an application behaves behind the scenes.
+### KEY CONCEPTS LEARNED 
+## PROXY
+The Proxy feature intercepts traffic between the browser and the web server.
+A penetration tester can:
+- Capture requests
+- Inspect requests
+- Modify requests
+- Forward or drop requests
+The proxy allows visibility into how a web application communicates.
+## HTTP REQUEST AND RESPONSES
+While using Burp Suite, I observed:
+- Request methods (GET and POST)
+- Headers
+- Cookies
+- Parameters
+- HTTP versions
+- Server responses
+This helped me understand how browsers communicate with web servers.
+## REPEATER
+Repeater is used to manually resend requests multiple times without refreshing the browser.
+A penetration tester can:
+- Modify parameters
+- Change headers
+- Observe application behavior
+- Compare server responses
+Repeater is useful for testing how an application reacts to different inputs.
+## HTTP HISTORY
+HTTP History records requests and responses observed by Burp Suite.
+It helps a tester:
+- Review previous requests
+- Identify interesting endpoints
+- Locate parameters
+- Discover application functionality
+HTTP History acts as a record of web traffic captured during testing.
+## PENTESTER MINDSET LEARNED 
+While reviewing requests, I learned to ask:
+- What can I control?
+- What parameters exist?
+- What happens if I change them?
+- Is the application validating user input?
+- Does the response change?
+These questions help identify potential security weaknesses.
+## PRACTICAL ACTIVITIES PERFROMED
+- Intercepted browser traffic using Burp Proxy
+- Observed GET requests
+- Examined cookies and headers
+- Sent requests to Repeater
+- Modified selected parameters
+- Observed different server responses
+- Explored HTTP History
+## KEY TAKEAWAY
+Burp Suite is one of the most important tools used in web application penetration testing. It provides visibility into requests and responses and allows a tester to analyze application behavior by inspecting and modifying web traffic.
+
+
+# DAY 10 
+### Burp Suite Target Scope and Site Map
+
+## OBJECTIVE
+Learn how Burp Suite helps penetration testers identify application functionality, organize discovered endpoints, and focus testing efforts on authorized targets.
+## WHAT IS TARGET SCOPE?
+Target Scope defines which websites, domains, or applications are authorized for testing.
+It helps penetration testers focus only on approved targets and avoid testing systems outside the assessment scope.
+EXAMPLE:
+In Scope:
+https://example.com
+Out of Scope:
+https://google.com
+Understanding scope is important because penetration testing should only be performed on systems where permission has been granted.
+## WHAT IS SITE MAP?
+Site Map is a Burp Suite feature that automatically organizes discovered application content.
+As a tester browses an application, Burp Suite records pages and endpoints and displays them in a structured tree format.
+EXAMPLE:
+/
+├── /login
+├── /profile
+├── /account
+├── /upload
+└── /admin
+This helps testers understand the structure of an application.
+## WHY SITE MAP IS IMPORTANT
+Site Map helps penetration testers:
+- Discover endpoints
+- Identify application functionality
+- Locate user-controlled input
+- Find areas worth investigating
+Instead of manually remembering pages, Burp Suite organizes them automatically.
+## INTERESTING ENDPOINTS IDENTIFIED
+During learning, I discovered that some endpoints usually deserve more attention than others.
+Examples:
+### HIGH INTEREST
+- /login
+- /upload
+- /admin
+- /api/users
+- /api/orders
+These endpoints often involve authentication, authorization, file handling, or sensitive functionality.
+### LOWER INTEREST
+- /logo.png
+- /style.css
+These are typically static resources and are usually lower priority during testing.
+## PENTESTER MINDSET LEARNED
+When reviewing a Site Map, I learned to ask:
+- Which endpoints are sensitive?
+- What functionality does this endpoint provide?
+- Are there user-controlled parameters?
+- Can I modify anything?
+- Can I access data I should not access?
+## PRACTICAL EXAMPLES
+Example Endpoint:
+GET /employee?id=15
+Questions a tester may ask:
+- What happens if id=16?
+- Can I access another employee record?
+- Does the application validate authorization?
+Example Endpoint:
+/admin
+Questions a tester may ask:
+- Can unauthorized users access it?
+- Are access controls properly enforced?
+## KEY TAKEAWAYS
+Target Scope ensures testing remains focused on authorized systems, while Site Map helps organize discovered functionality and identify areas that deserve deeper security testing. Site Map acts as a map of an application's attack surface and helps penetration testers prioritize their investigations.
