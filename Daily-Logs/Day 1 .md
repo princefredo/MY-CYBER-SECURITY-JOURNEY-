@@ -689,3 +689,178 @@ Questions a tester may ask:
 - Are access controls properly enforced?
 ## KEY TAKEAWAYS
 Target Scope ensures testing remains focused on authorized systems, while Site Map helps organize discovered functionality and identify areas that deserve deeper security testing. Site Map acts as a map of an application's attack surface and helps penetration testers prioritize their investigations.
+
+
+### DAY 11  - WEB APPLICATION SECURITY FUNDAMENTALS
+# TOPICS COVERED
+1. Attack Surface Discovery Fundamentals
+2. Authentication & Authorization Testing
+3. IDOR (Insecure Direct Object References)
+
+# 1. ATTACK SURFACE DISCOVERY FUNDAMENTAL
+## DEFINITION
+Attack Surface Discovery is the process of identifying all accessible functionality, endpoints, parameters, inputs, and features within a web application that may be tested for security weaknesses.
+## WHY IT IS IMPORTANT
+A penetration tester cannot test what they have not discovered. Before looking for vulnerabilities, a tester must understand how the application works and identify areas worth investigating.
+## COMMON AREAS OF INTEREST
+### AUTHENTICATION ENDPOINTS
+/login
+/register
+/reset-password
+### AUTHORIZATION ENDPOINTS
+/role
+/admin
+/admin/users
+### USER DATA ENDPOINTS
+/profile?id=15
+/account?id=5
+/employee?id=10
+### FILE UPLOAD ENDPOINTS
+/upload
+### SEARCH ENDPOINTS
+/search?q=laptop
+### API ENDPOINTS
+/api/users
+/api/orders
+## PENTESTER MINDSET
+When discovering an endpoint, ask:
+- What does this endpoint do?
+- What can I control?
+- Are there any parameters?
+- Can I modify the parameters?
+- Does the server validate my changes?
+- Can I access unauthorized functionality?
+## INTERESTING ENDPOINTS
+Examples:
+/admin
+/profile?id=15
+/upload
+/search?q=phone
+/api/users
+## LESS INTERESTING ENDPOINT
+Examples:
+/logo.png
+/style.css
+/favicon.ico
+These are usually static resources and often contain less security-relevant functionality.
+
+# 2. AUTHENTICATION & AUTHORIZATION TESTING
+
+## AUTHENTICATION
+### DEFINITION
+Authentication is the process of proving a user's identity.
+### PURPOSE
+Authentication answers the question:
+Who are you?
+### Examples
+- Username and Password
+- One-Time Password (OTP)
+- Passkeys
+- Biometrics
+### PENTESTER QUESTIONS
+- Can login be bypassed?
+- How are sessions created?
+- How are cookies handled?
+- Can authentication mechanisms be abused?
+## AUTHORIZATION
+
+### DEFINITION
+Authorization determines what an authenticated user is allowed to access or perform.
+### PURPOSE
+Authorization answers the question:
+What are you allowed to do?
+### EXAMPLES
+A normal user should not access:
+/admin
+/admin/users
+/admin/settings
+### PENTESTER QUESTIONS
+- Can I access another user's data?
+- Can I access admin functionality?
+- Can I perform actions outside my privileges?
+- Can I view restricted resources?
+
+## AUTHENTICATION & AUTHORIZATION
+### AUTHENTICATION
+Who are you?
+Example:
+Username + Password
+### AUTHORIZATION
+What are you allowed to do?
+Example:
+Can this user access /admin?
+## EXAMPLE SCENARIO
+Request:
+http
+GET /profile?id=15
+User changes it to:
+http
+GET /profile?id=16
+If another user's profile becomes accessible:
+Authorization Failure
+
+# 3. IDOR (Insecure Direct Object References)
+## DEFINITION
+IDOR (Insecure Direct Object Reference) is an authorization vulnerability that occurs when a user can access or modify resources they should not have access to by changing identifiers such as IDs, account numbers, invoice numbers, or profile references.
+## COMMON EXAMPLES
+### USER PROFILE
+http
+GET /profile?id=15
+Modified:
+http
+GET /profile?id=16
+### INVOICE ACCESS
+http
+GET /invoice?id=120
+Modified:
+http
+GET /invoice?id=121
+### EMPLOYEE RECORD
+http
+GET /employee?id=5
+Modified:
+http
+GET /employee?id=6
+## WHY IDOR HAPPENS
+The application verifies that the user is logged in but fails to verify ownership of the requested resource.
+The server checks:
+Is the user authenticated?
+But fails to check:
+Does this user own this resource?
+## PENTESTER MINDSET
+Whenever a parameter references:
+id=
+user=
+account=
+invoice=
+document=
+employee=
+profile=
+order=
+Ask:
+What happens if I change it?
+Examples:
+id=15 → id=16
+id=120 → id=121
+user=5 → user=6
+## SIGNS OF POTENTIAL IDOR
+- User identifiers in URLs
+- Account numbers in requests
+- Invoice references
+- Document references
+- Employee records
+- Profile identifiers
+## KEY LESSONS
+Finding:
+http
+/profile?id=15
+is Attack Surface Discovery.
+Accessing another user's profile after modifying the ID is an IDOR vulnerability caused by an authorization failure.
+# PERSONAL TAKEAWAYS
+- Attack Surface Discovery helps identify functionality worth testing.
+- Authentication verifies identity.
+- Authorization determines permissions.
+- IDOR is a common authorization vulnerability.
+- Whenever an identifier appears in a request, a pentester should consider whether modifying it could expose unauthorized data.
+  THE FIRST QUESTION A PENTESTER SHOULD ASK IS:
+  What happens if I modify this parameter?
